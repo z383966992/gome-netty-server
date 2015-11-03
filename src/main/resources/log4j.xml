@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!-- log level DEBUG INFO WARN ERROR FATAL -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="FILE-ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Append" value="true" />
+		<param name="file" value="${com.gome.netty.server.logpath}/netty-error.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %t - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+		</filter>
+	</appender>
+	
+	<appender name="FILE-INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Append" value="true" />
+		<param name="file" value="${com.gome.netty.server.logpath}/netty-info.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %t - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	
+	
+	<logger name="gome.cloud" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="FILE-INFO" />
+	</logger>
+
+	<root>
+		<priority value="error" />
+		<appender-ref ref="FILE-ERROR" />
+	</root>
+</log4j:configuration>
