@@ -13,7 +13,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import io.netty.handler.timeout.ReadTimeoutHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +20,10 @@ import org.slf4j.LoggerFactory;
 import com.gome.netty.codec.MarshallingCodecFactory;
 import com.gome.netty.config.Config;
 import com.gome.netty.handlers.CheckAuthHandler;
-import com.gome.netty.handlers.HeartBeatResponseHandler;
 import com.gome.netty.handlers.ControlCommandHandler;
+import com.gome.netty.handlers.HeartBeatResponseHandler;
 import com.gome.netty.handlers.TimeoutHandler;
-/**
- * 国美云平台netty server
- */
+
 public class GomeCloudNettyServer{
 	
 	private Logger logger = LoggerFactory.getLogger(GomeCloudNettyServer.class);
@@ -57,8 +54,8 @@ public class GomeCloudNettyServer{
 					 //jboss marshalling codec
 					 p.addLast("decoder", MarshallingCodecFactory.buildMarshallingDecoder());
 				     p.addLast("encoder", MarshallingCodecFactory.buildMarshallingEncoder());
-				     p.addLast("readTimeoutHandler", new ReadTimeoutHandler(20));
-//				     p.addLast("timeoutHandler", new TimeoutHandler(20));
+//				     p.addLast("readTimeoutHandler", new ReadTimeoutHandler(20));
+				     p.addLast("timeoutHandler", new TimeoutHandler(20));
 				     p.addLast("checkAuthHandler", new CheckAuthHandler());
 				     p.addLast("heartBeatResponse", new HeartBeatResponseHandler());
 				     p.addLast("serviceHandler", new ControlCommandHandler());
