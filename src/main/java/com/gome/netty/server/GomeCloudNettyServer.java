@@ -8,11 +8,19 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.MessageToByteEncoder;
+import io.netty.handler.codec.MessageToMessageDecoder;
+import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.concurrent.SingleThreadEventExecutor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +35,14 @@ import com.gome.netty.handlers.TimeoutHandler;
 public class GomeCloudNettyServer{
 	
 	private Logger logger = LoggerFactory.getLogger(GomeCloudNettyServer.class);
-	
+//	ByteToMessageDecoder
+	//MessageToMessageDecoder
+//	LengthFieldBasedFrameDecoder
+//	MessageToByteEncoder
+//	MessageToMessageEncoder
+//	LengthFieldPrepender
+//	NioEventLoop
+//	SingleThreadEventExecutor
 	private void start(String ip, int port) throws Exception {
 		EventLoopGroup boss = new NioEventLoopGroup();
 		EventLoopGroup worker = new NioEventLoopGroup();
